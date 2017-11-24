@@ -122,6 +122,14 @@ public class koneksi {
         }
         return data;
     }
+    public int getInt(String query) throws SQLException {
+        int data = 0;
+        ResultSet rs = getResult(query);
+        if (rs.next()) {
+            data = rs.getInt(1);
+        }
+        return data;
+    }
 
 //    public String getgejalafromdb(int idgejala) throws SQLException {
 //        String query = " select Gejala from gejala where idGejala = " + idgejala;
@@ -148,6 +156,42 @@ public class koneksi {
         String query = "UPDATE skor SET skor = " + skor + " WHERE username like '" + username + "' && userkey like '" + key + "'";
         System.out.println(query);
         execute(query);
+    }
+    public void updateKursi(int kursi, String username, String key) {
+        String query = "UPDATE skor SET kursi = " + kursi + " WHERE username like '" + username + "' && userkey like '" + key + "'";
+        System.out.println(query);
+        execute(query);
+    }
+    public void updateAc(int ac, String username, String key) {
+        String query = "UPDATE skor SET ac = " + ac + " WHERE username like '" + username + "' && userkey like '" + key + "'";
+        System.out.println(query);
+        execute(query);
+    }
+    public void updateWifi(int wifi, String username, String key) {
+        String query = "UPDATE skor SET wifi = " + wifi + " WHERE username like '" + username + "' && userkey like '" + key + "'";
+        System.out.println(query);
+        execute(query);
+    }
+    
+    public int getScore(String username, String key) throws SQLException{
+        String query = " select skor from skor where username like '" + username + "' and userkey like '" + key + "'";
+        System.out.println(query);
+        return getInt(query);
+    }
+    public int getWifi(String username, String key) throws SQLException{
+        String query = " select wifi from skor where username like '" + username + "' and userkey like '" + key + "'";
+        //System.out.println(query);
+        return getInt(query);
+    }
+    public int getKursi(String username, String key) throws SQLException{
+        String query = " select kursi from skor where username like '" + username + "' and userkey like '" + key + "'";
+        //System.out.println(query);
+        return getInt(query);
+    }
+    public int getAc(String username, String key) throws SQLException{
+        String query = " select ac from skor where username like '" + username + "' and userkey like '" + key + "'";
+        //System.out.println(query);
+        return getInt(query);
     }
 
 //    public String getobat (int idtanaman,int idpenyakit,int idgejala,float cfpakar){

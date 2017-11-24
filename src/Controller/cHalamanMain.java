@@ -1,6 +1,7 @@
 package Controller;
 
 import View.vHalamanMain;
+import View.vShop;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,7 @@ import model.koneksi;
 public class cHalamanMain extends dbarray {
 
     private vHalamanMain view;
+    vShop viewshop;
     private koneksi model;
     private ImageIcon PasienNull, DropBox;
     private int waktuJalan;
@@ -37,24 +39,38 @@ public class cHalamanMain extends dbarray {
     int onkursi2;
     String Penyakit;
     String username, key;
-    
+    private ImageIcon[] kursi, ac, wifi;
+    int acSave, wifiSave, kursiSave, score;
 
     public void setAdaPopup(boolean adaPopup) {
         this.adaPopup = adaPopup;
     }
 
-    public cHalamanMain(String username, String key) throws SQLException {
-        
+    public cHalamanMain(String username, String key, int skor, int kursiSave, int acSave, int wifiSave) throws SQLException {
+
         this.username = username;//eeq
         this.key = key;
-        System.out.println(this.username);
-        System.out.println(this.key);
+        this.kursiSave = kursiSave;
+        this.acSave = acSave;
+        this.wifiSave = wifiSave;
+        this.score = skor;
+        System.out.println("jeneng : " + this.username);
+        System.out.println("kunci : " + this.key);
+        System.out.println("kursi : " + this.kursiSave);
+        System.out.println("ac : " + this.acSave);
+        System.out.println("wifi : " + this.wifiSave);
+        System.out.println("score : " + this.score);
         this.model = new koneksi();
         this.view = new vHalamanMain();
+
+        this.viewshop = new vShop();
+
         this.game = new mulaiPermainan();
         view.klikshop(new klikShop());
         view.TampilPopUp(false);
         view.TampilPopUpBeliObat(false);
+
+        view.getLabelScore().setText(Integer.toString(this.score));
 
         view.getOkPopUpBtn().addActionListener(new OkPopUpAction());
         view.getBeliObatBtn().addActionListener(new BeliObatAction());
@@ -66,6 +82,29 @@ public class cHalamanMain extends dbarray {
         //Deklarasi icon
         this.PasienNull = new ImageIcon(getClass().getResource("/img/150150null.png"));
         this.DropBox = new ImageIcon(getClass().getResource("/img/kotak.png"));
+        //Deklarasi ikon kursi
+        kursi = new ImageIcon[6];
+        for (int i = 0; i < kursi.length; i++) {
+            kursi[i] = new ImageIcon(getClass().getResource("/img/kursiplay" + (i + 1) + ".png"));
+        }
+        //Deklarasi ikon ac
+        ac = new ImageIcon[3];
+        for (int i = 0; i < ac.length; i++) {
+            if (i == 0) {
+                ac[i] = PasienNull;
+            } else {
+                ac[i] = new ImageIcon(getClass().getResource("/img/AC" + (i) + ".png"));
+            }
+        }
+        //Deklarasi ikon wifi
+        wifi = new ImageIcon[3];
+        for (int i = 0; i < wifi.length; i++) {
+            if (i == 0) {
+                wifi[i] = PasienNull;
+            } else {
+                wifi[i] = new ImageIcon(getClass().getResource("/img/Wifi" + (i) + ".png"));
+            }
+        }
         String namaPasien = "";
         pasienIcon = new ImageIcon[5][3];
         for (int i = 0; i < 5; i++) { //i jenis
@@ -96,6 +135,10 @@ public class cHalamanMain extends dbarray {
         view.getImgPasienApotek().setIcon(DropBox);
         view.getImgPasienFrame1().setIcon(PasienNull);
         view.getImgPasienFrame2().setIcon(PasienNull);
+        view.getImgKursiFrame().setIcon(kursi[this.kursiSave]);
+        view.getAc().setIcon(ac[this.acSave]);
+        view.getWifi().setIcon(wifi[this.wifiSave]);
+
         //view.getImgPasienFrame2().setIcon(pasienIcon[1][0]);
         //thread
         try {
@@ -285,7 +328,7 @@ public class cHalamanMain extends dbarray {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int score;
+
             if (view.getJawaban1BeliObatBtn().getText().equals(jawabanBenar)) {
                 score = Integer.valueOf(view.getLabelScore().getText());
                 score += 100;
@@ -489,7 +532,12 @@ public class cHalamanMain extends dbarray {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Controller.cshop a = new Controller.cshop(new View.shop());
+            Controller.cshop a =null ;
+            try {
+                a = new Controller.cshop(new vShop(), view ,username,key);
+            } catch (SQLException ex) {
+                Logger.getLogger(cHalamanMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
             a.view.setVisible(true);
         }
 

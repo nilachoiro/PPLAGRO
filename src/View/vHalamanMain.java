@@ -100,6 +100,12 @@ public class vHalamanMain extends javax.swing.JFrame {
     public JLabel getLabelScore () {
         return Score ;
     }
+    public JLabel getAc(){
+        return ac;
+    }
+    public JLabel getWifi(){
+        return wifi;
+    }
     public void message (String message) {
         JOptionPane.showMessageDialog(this, message);
     }
@@ -137,6 +143,8 @@ public class vHalamanMain extends javax.swing.JFrame {
         popupperiksa_BG = new javax.swing.JLabel();
         dokter = new javax.swing.JLabel();
         apoteker = new javax.swing.JLabel();
+        wifi = new javax.swing.JLabel();
+        ac = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -193,7 +201,7 @@ public class vHalamanMain extends javax.swing.JFrame {
         jPanel1.add(imgKursiFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, -1, -1));
 
         imgPasienDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kotak.png"))); // NOI18N
-        jPanel1.add(imgPasienDokter, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
+        jPanel1.add(imgPasienDokter, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
 
         imgPasienApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kotak.png"))); // NOI18N
         jPanel1.add(imgPasienApotek, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
@@ -207,6 +215,13 @@ public class vHalamanMain extends javax.swing.JFrame {
 
         apoteker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/apoteker.png"))); // NOI18N
         jPanel1.add(apoteker, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 140, 300));
+
+        wifi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Wifi1.png"))); // NOI18N
+        jPanel1.add(wifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, -1, -1));
+
+        ac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/AC1.png"))); // NOI18N
+        jPanel1.add(ac, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, -1));
 
         background.setFont(new java.awt.Font("Bebas Neue", 0, 24)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/HMain_BackGround.png"))); // NOI18N
@@ -269,6 +284,7 @@ public class vHalamanMain extends javax.swing.JFrame {
     private javax.swing.JButton BtnJawaban2;
     private javax.swing.JButton BtnJawaban3;
     private javax.swing.JLabel Score;
+    private javax.swing.JLabel ac;
     private javax.swing.JLabel apoteker;
     private javax.swing.JLabel background;
     private javax.swing.JButton btnPause;
@@ -289,5 +305,6 @@ public class vHalamanMain extends javax.swing.JFrame {
     private javax.swing.JLabel popup_beliobat_obat3;
     private javax.swing.JLabel popupperiksa;
     private javax.swing.JLabel popupperiksa_BG;
+    private javax.swing.JLabel wifi;
     // End of variables declaration//GEN-END:variables
 }

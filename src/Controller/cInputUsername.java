@@ -66,7 +66,7 @@ public class cInputUsername {
                         String key = generateKey();
                         writeSavefile("save.txt", username, key); //write save file
                         model.insertNewUsername(0, username,key);
-                        new cHalamanMain(username,key).showPage(true);
+                        new cHalamanMain(username,key,0,0,0,0).showPage(true);
                         view.dispose();
                     }
                 } catch (SQLException ex) {
