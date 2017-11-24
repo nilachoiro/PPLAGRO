@@ -45,7 +45,7 @@ public class cHalamanMain extends dbarray {
 
     public cHalamanMain(String username, String key) throws SQLException {
         
-        this.username = username;
+        this.username = username;//eeq
         this.key = key;
         System.out.println(this.username);
         System.out.println(this.key);
