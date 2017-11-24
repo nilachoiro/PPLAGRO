@@ -5,13 +5,17 @@
  */
 package Controller;
 
+import static Controller.cHalamanAwal.view;
 import View.vShop;
 import View.vHalamanDokter;
 import View.vHalamanMain;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import model.koneksi;
 
 /**
@@ -88,9 +92,17 @@ public class cshop {
         for (int i = 1; i < ac.length; i++) {
             ac[i] = new ImageIcon(getClass().getResource("/img/AC" + (i) + ".png"));
         }
-        view.Item2().setIcon(wifi[model.getWifi(username, key)]);
-        view.Item3().setIcon(ac[model.getAc(username, key)]);
-        view.Item1().setIcon(kursi[model.getKursi(username, key)]);
+        view.Item2().setIcon(wifi[model.getWifi(username, key) + 1]);
+        view.HargaItem2().setText(Integer.toString(wifiharga[model.getWifi(username, key) + 1]));
+        view.NamaItem2().setText(wifilabel[model.getWifi(username, key) + 1]);
+
+        view.Item3().setIcon(ac[model.getAc(username, key) + 1]);
+        view.HargaItem3().setText(Integer.toString(acharga[model.getAc(username, key) + 1]));
+        view.NamaItem3().setText(aclabel[model.getAc(username, key + 1)]);
+
+        view.Item1().setIcon(kursi[model.getKursi(username, key) + 1]);
+        view.HargaItem1().setText(Integer.toString(kursiharga[model.getKursi(username, key) + 1]));
+        view.NamaItem1().setText(kursilabel[model.getKursi(username, key) + 1]);
 
     }
 
@@ -103,13 +115,17 @@ public class cshop {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = wifi.length - 2; i >= 0; i--) {
-                if (view.NamaItem2().getText() == wifilabel[i]) {
-                    view.Item2().setIcon(wifi[i + 1]);
-                    view.NamaItem2().setText(wifilabel[i + 1]);
-                    view.HargaItem2().setText(String.valueOf(wifiharga[i]));
-                    view2.getWifi().setIcon(wifi[i + 1]);
-                    model.updateWifi(i+1, username, key);
-
+                if (Integer.valueOf(view.HargaItem2().getText()) < Integer.valueOf(view2.getLabelScore().getText())) {
+                    if (view.NamaItem2().getText() == wifilabel[i]) {
+                        view.Item2().setIcon(wifi[i + 2]);
+                        view.NamaItem2().setText(wifilabel[i + 2]);
+                        view.HargaItem2().setText(String.valueOf(wifiharga[i + 2]));
+                        view2.getWifi().setIcon(wifi[i + 1]);
+                        model.updateWifi(i + 1, username, key);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(view, "Skor anda tidak mencukupi!", "Peringatan!", JOptionPane.WARNING_MESSAGE);
+                    i = 0;
                 }
             }
         }
@@ -121,11 +137,16 @@ public class cshop {
         public void actionPerformed(ActionEvent e) {
             for (int i = ac.length - 2; i >= 0; i--) {
                 if (view.NamaItem3().getText() == aclabel[i]) {
-                    view.Item3().setIcon(ac[i + 1]);
-                    view.NamaItem3().setText(aclabel[i + 1]);
-                    view.HargaItem3().setText(String.valueOf(acharga[i + 1]));
-                    view2.getAc().setIcon(ac[i + 1]);
-                    model.updateAc(i+1, username, key);
+                    if (Integer.valueOf(view.HargaItem3().getText()) < Integer.valueOf(view2.getLabelScore().getText())) {
+                        view.Item3().setIcon(ac[i + 2]);
+                        view.NamaItem3().setText(aclabel[i + 2]);
+                        view.HargaItem3().setText(String.valueOf(acharga[i + 2]));
+                        view2.getAc().setIcon(ac[i + 1]);
+                        model.updateAc(i + 1, username, key);
+                    } else {
+                        JOptionPane.showMessageDialog(view, "Skor anda tidak mencukupi!", "Peringatan!", JOptionPane.WARNING_MESSAGE);
+                        i = 0;
+                    }
                 }
             }
         }
@@ -137,12 +158,17 @@ public class cshop {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = kursi.length - 2; i >= 0; i--) {
-                if (view.NamaItem1().getText() == kursilabel[i]) {
-                    view.Item1().setIcon(kursi[i + 1]);
-                    view.NamaItem1().setText(kursilabel[i + 1]);
-                    view.HargaItem1().setText(String.valueOf(kursiharga[i + 1]));
-                    view2.getImgKursiFrame().setIcon(kursiplay[i + 1]);
-                    model.updateKursi(i+1, username, key);
+                if (Integer.valueOf(view.HargaItem1().getText()) < Integer.valueOf(view2.getLabelScore().getText())) {
+                    if (view.NamaItem1().getText() == kursilabel[i]) {
+                        view.Item1().setIcon(kursi[i + 2]);
+                        view.NamaItem1().setText(kursilabel[i + 2]);
+                        view.HargaItem1().setText(String.valueOf(kursiharga[i + 2]));
+                        view2.getImgKursiFrame().setIcon(kursiplay[i + 1]);
+                        model.updateKursi(i + 1, username, key);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(view, "Skor anda tidak mencukupi!", "Peringatan!", JOptionPane.WARNING_MESSAGE);
+                    i = 0;
                 }
             }
         }
