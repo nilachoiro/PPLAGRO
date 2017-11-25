@@ -5,6 +5,8 @@
  */
 package pplagro;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author DWI WAHYU
@@ -14,7 +16,7 @@ public class PPLAGRO {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         new Controller.cHalamanAwal().showPage(true);
         //new Controller.cHalamanMain();

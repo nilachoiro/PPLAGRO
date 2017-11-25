@@ -8,6 +8,9 @@ package Controller;
 import View.vPetunjuk;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +29,12 @@ public class cPetunjuk {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            new cHalamanAwal().showPage(true);
+            try {
+                new cHalamanAwal().showPage(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(cPetunjuk.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             view.dispose();
         }
     }
