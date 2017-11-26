@@ -53,6 +53,7 @@ public class vHalamanMain extends javax.swing.JFrame {
     public JButton getBeliObatBtn () {
         return BeliObatBtn ;
     }
+    
     public void TampilPopUpBeliObat (boolean status) {
         popup_beliObat.setVisible(status);
         popup_beliobat_obat1.setVisible(status);
@@ -96,6 +97,9 @@ public class vHalamanMain extends javax.swing.JFrame {
     
     public void setpopup(String kata) {
         popupperiksa.setText(kata);
+    }
+    public void setpopupGejala(String kata) {
+        popupGejala.setText(kata);
     }
     public JLabel getLabelScore () {
         return Score ;
@@ -145,6 +149,7 @@ public class vHalamanMain extends javax.swing.JFrame {
         apoteker = new javax.swing.JLabel();
         wifi = new javax.swing.JLabel();
         ac = new javax.swing.JLabel();
+        popupGejala = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -210,6 +215,7 @@ public class vHalamanMain extends javax.swing.JFrame {
         popupperiksa_BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/popup.png"))); // NOI18N
         jPanel1.add(popupperiksa_BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 370, 130));
 
+        dokter.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         dokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Dokter.png"))); // NOI18N
         jPanel1.add(dokter, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 130, 210));
 
@@ -222,6 +228,11 @@ public class vHalamanMain extends javax.swing.JFrame {
         ac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/AC1.png"))); // NOI18N
         jPanel1.add(ac, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, -1));
+
+        popupGejala.setBackground(new java.awt.Color(0, 0, 0));
+        popupGejala.setForeground(new java.awt.Color(255, 255, 255));
+        popupGejala.setOpaque(true);
+        jPanel1.add(popupGejala, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 190, 110));
 
         background.setFont(new java.awt.Font("Bebas Neue", 0, 24)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/HMain_BackGround.png"))); // NOI18N
@@ -298,6 +309,7 @@ public class vHalamanMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton ok_popup;
+    private javax.swing.JLabel popupGejala;
     private javax.swing.JLabel popup_beliObat;
     private javax.swing.JLabel popup_beliobat_label;
     private javax.swing.JLabel popup_beliobat_obat1;

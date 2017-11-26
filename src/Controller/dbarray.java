@@ -13,7 +13,7 @@ public class dbarray {
 
     public String[][] penyakit = new String[8][];
  public String dbnamaarray[] = {"Kutu Putih", "Pseudococcus Citri", "Penghisap daun atau Buah", "Ulat Api", "Rayap Tanah", "Penggerek Batang", "Ulat Kantong", "Diaphorre Citri"};
-    
+   
     public dbarray() {
         String[] Kutu_Putih = {"1", "2", "3"};
         String[] Pseudococcus_Citri = {"4", "5", "6"};

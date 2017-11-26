@@ -113,6 +113,11 @@ public class koneksi {
         }
         return model;
     }
+    
+    public String getNamaGejala(int id) throws SQLException{
+        String query = " select Gejala from gejala where idGejala = " + id;
+        return getdata(query);
+    }
 
     public double getDouble(String query) throws SQLException {
         double data = 0.0;

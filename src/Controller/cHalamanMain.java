@@ -37,7 +37,7 @@ public class cHalamanMain extends dbarray {
     int onapotik;
     int onkursi1;
     int onkursi2;
-    String Penyakit;
+    String Penyakit,Gejala;
     String username, key;
     private ImageIcon[] kursi, ac, wifi;
     int acSave, wifiSave, kursiSave, score;
@@ -47,7 +47,7 @@ public class cHalamanMain extends dbarray {
     }
 
     public cHalamanMain(String username, String key, int skor, int kursiSave, int acSave, int wifiSave) throws SQLException {
-
+        this.Gejala = "";
         this.username = username;//eeq
         this.key = key;
         this.kursiSave = kursiSave;
@@ -187,6 +187,15 @@ public class cHalamanMain extends dbarray {
                         if (!view.getImgPasienDokter().getIcon().equals(DropBox)) {
                             Penyakit = dbnamaarray[objek[pasienke]];
                             view.setpopup("kamu sakit =" + Penyakit);
+                            for (int i = 0; i < gejalaPasien[pasienke].length; i++) {
+                                try {
+                                    //System.out.println(gejalaPasien[pasienke][i]);
+                                    Gejala += model.getNamaGejala(gejalaPasien[pasienke][i]) +"<br>";
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(cHalamanMain.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            } 
+                            view.setpopupGejala("<html>Gejala : <br>" + Gejala+"</html>");
                             System.out.println("ambil kursi 1");
                             view.TampilPopUp(true);
 
@@ -223,6 +232,15 @@ public class cHalamanMain extends dbarray {
                             view.TampilPopUp(true);
 
                         }
+                        for (int i = 0; i < gejalaPasien[pasienke].length; i++) {
+                                try {
+                                    //System.out.println(gejalaPasien[pasienke][i]);
+                                    Gejala += model.getNamaGejala(gejalaPasien[pasienke][i]) +"<br>";
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(cHalamanMain.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            } 
+                            view.setpopupGejala("<html>Gejala : <br>" + Gejala+"</html>");
                         System.out.println("get kursi 2");
                         ondokter = onkursi1;
                         periksaobjek[ondokter] = true;
@@ -431,6 +449,8 @@ public class cHalamanMain extends dbarray {
                 view.TampilPopUp(false);
                 view.getImgPasienApotek().setIcon(view.getImgPasienDokter().getIcon());
                 view.getImgPasienDokter().setIcon(DropBox);
+                view.setpopupGejala("");
+                Gejala = "";
             } else {
                 JOptionPane.showMessageDialog(view, "Mohon antri!");
             }
